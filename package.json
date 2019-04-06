@@ -2,16 +2,19 @@
   "name": "sms-manager",
   "version": "0.1.0",
   "description": "SMS management application api",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "mocha tests/ --recursive --require @babel/register",
-    "test:watch": "yarn test -- -w",
+    "test": "mocha tests/**/*.test.js --require @babel/register",
+    "test:watch": "yarn test -w",
     "prestart": "yarn build",
-    "start": "yarn build && yarn dev",
+    "start": "node build/server.js",
     "dev": "yarn lint & nodemon -x babel-node src/server.js -w src",
     "prebuild": "rm -rm src",
     "build": "babel src -d build",
-    "lint": "eslint src tests"
+    "lint": "eslint src tests",
+    "db:migrate": "yarn db:migrate:undo && sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo:all",
+    "db:seed": "db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -37,11 +40,14 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "sequelize-cli": "^5.4.0"
   },
   "dependencies": {
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
-    "sequelize": "^5.2.12",
-    "sequelize-cli": "^5.4.0"
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.2.12"
   }
 }
