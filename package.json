@@ -1,0 +1,47 @@
+{
+  "name": "sms-manager",
+  "version": "0.1.0",
+  "description": "SMS management application api",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/ --recursive --require @babel/register",
+    "test:watch": "yarn test -- -w",
+    "prestart": "yarn build",
+    "start": "yarn build && yarn dev",
+    "dev": "yarn lint & nodemon -x babel-node src/server.js -w src",
+    "prebuild": "rm -rm src",
+    "build": "babel src -d build",
+    "lint": "eslint src tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Japhethca/sms-manager.git"
+  },
+  "author": "Anyigor Chidiebere Japheth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Japhethca/sms-manager/issues"
+  },
+  "homepage": "https://github.com/Japhethca/sms-manager#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/register": "^7.4.0",
+    "babel-eslint": "^10.0.1",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "sequelize": "^5.2.12",
+    "sequelize-cli": "^5.4.0"
+  }
+}
