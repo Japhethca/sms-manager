@@ -7,6 +7,9 @@ import dbconfig from '../../configs/db';
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = dbconfig[env];
+config.define = {
+  freezeTableName: true,
+};
 const db = {};
 
 let sequelize;
@@ -22,6 +25,7 @@ fs
   .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file));
+
     db[model.name] = model;
   });
 
@@ -34,4 +38,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+export default db;

@@ -1,16 +1,21 @@
 export default {
   up: (queryInterface, Sequelize) => queryInterface.createTable('Contact', {
-    firstName: {
-      type: Sequelize.STRING,
+    id: {
+      primaryKey: true,
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
     },
-    lastName: {
+    name: {
       type: Sequelize.STRING,
     },
     phoneNumber: {
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.STRING,
       defaultValue: false,
       allowNull: false,
+      unique: true,
     },
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
   }),
   down: queryInterface => queryInterface.dropTable('Contact'),
 };
