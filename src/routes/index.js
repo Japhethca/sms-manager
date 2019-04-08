@@ -7,7 +7,6 @@ import {
   getContact,
   sendMessage,
   getContactMessages,
-  updateMessage,
   deleteMessage,
   getMessage,
   deleteContact,
@@ -91,18 +90,6 @@ router.get('/messages/:messageId',
     },
   }),
   getMessage);
-
-router.put('/messages/:messageId',
-  validate({
-    params: {
-      messageId: joi.number().required(),
-    },
-    body: {
-      text: joi.string().required(),
-      to: joi.number().required(),
-    },
-  }),
-  updateMessage);
 
 router.delete('/messages/:messageId',
   validate({

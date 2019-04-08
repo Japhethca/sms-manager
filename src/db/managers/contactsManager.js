@@ -9,7 +9,7 @@ export async function getAllContacts() {
 
 export async function createNewContact(contactInfo) {
   const { name, phoneNumber } = contactInfo;
-  const contact = await Contact.create({ name: name.trim(), phoneNumber });
+  const contact = await Contact.create({ name, phoneNumber });
   return contact;
 }
 

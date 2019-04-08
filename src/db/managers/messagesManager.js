@@ -29,15 +29,6 @@ export async function getMessage(messageId) {
   return message;
 }
 
-export async function udpateMessage(messageId, fields) {
-  const message = await Message.update(fields, {
-    where: {
-      id: messageId,
-    },
-  });
-  return message;
-}
-
 export async function removeMessage(messageId) {
   await Message.destroy({ where: { id: messageId } });
 }
