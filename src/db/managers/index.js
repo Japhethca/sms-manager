@@ -1,2 +1,2 @@
 export * from './contactsManager';
-export * from './messagesManger';
+export * from './messagesManager';

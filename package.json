@@ -4,7 +4,7 @@
   "description": "SMS management application api",
   "main": "src/server.js",
   "scripts": {
-    "test": "mocha tests/**/*.test.js --require @babel/register",
+    "test": "NODE_ENV=test mocha tests/**/*.test.js --require @babel/register",
     "test:watch": "yarn test -w",
     "prestart": "yarn build",
     "start": "node build/server.js",
@@ -42,7 +42,8 @@
     "eslint-plugin-react": "^7.12.4",
     "mocha": "^6.0.2",
     "nodemon": "^1.18.10",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "sinon": "^7.3.1"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",
