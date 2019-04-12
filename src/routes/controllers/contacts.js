@@ -12,6 +12,7 @@ export async function createContact(req, res) {
   const number = await ContactManager.getContactByPhoneNumber(phoneNumber);
 
   if (number) {
+    console.log(number, 'from contact controller with phone number', phoneNumber);
     return errorResponse(res, 409, `Contact with '${phoneNumber}' phone number already exists`);
   }
 

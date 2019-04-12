@@ -1,15 +1,28 @@
 import { expect } from 'chai';
+import sinon from 'sinon';
 
-import db from '../../mocks/db';
+import db from '../../../src/db/models';
 import {
   getAllContacts,
   createNewContact,
   getContactByPhoneNumber,
   removeContact,
 } from '../../../src/db/managers/contactsManager';
+import { contacts as contactMock } from '../../fixtures';
 
 
 describe('Contact Managers', () => {
+  before(() => {
+    sinon.replace(db.Contact, 'create', sinon.fake.resolves(contactMock[0]));
+    sinon.replace(db.Contact, 'findOne', sinon.fake.resolves(contactMock[1]));
+    sinon.replace(db.Contact, 'findAll', sinon.fake.resolves(contactMock));
+    sinon.replace(db.Contact, 'destroy', sinon.fake());
+  });
+
+  after(() => {
+    sinon.restore();
+  });
+
   describe('getAllContacts', () => {
     it('should return all created contacts', async () => {
       const contacts = await getAllContacts();
@@ -29,6 +42,9 @@ describe('Contact Managers', () => {
   });
 
   describe('getContactByPhoneNumber', () => {
+    afterEach(() => {
+      db.Contact.findOne.resetHistory();
+    });
     it('should return a contact that has a given phone number', async () => {
       const phoneNumber = '0011';
       const contact = await getContactByPhoneNumber(phoneNumber);

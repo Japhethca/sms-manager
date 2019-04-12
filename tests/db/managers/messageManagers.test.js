@@ -1,17 +1,27 @@
 import { expect } from 'chai';
+import sinon from 'sinon';
 
-import db from '../../mocks/db';
+import db from '../../../src/db/models';
 import {
   getMessage,
-  getAllMessagesFrom,
-  getAllMessagesTo,
   getMessagesByPhoneNumber,
   removeMessage,
   sendMesage,
 } from '../../../src/db/managers/messagesManager';
-
+import { messages as messagesMock } from '../../fixtures';
 
 describe('Contact Managers', () => {
+  before(() => {
+    sinon.replace(db.Message, 'findAll', sinon.fake.resolves(messagesMock));
+    sinon.replace(db.Message, 'create', sinon.fake.resolves(messagesMock[0]));
+    sinon.replace(db.Message, 'findByPk', sinon.fake.resolves(messagesMock[1]));
+    sinon.replace(db.Message, 'destroy', sinon.fake());
+  });
+
+  after(() => {
+    sinon.restore();
+  });
+
   describe('getMessage', () => {
     it('should return message by id', async () => {
       const messageId = 1;
@@ -20,25 +30,6 @@ describe('Contact Managers', () => {
       expect(message.text).to.equal('Yo man! xup?');
       expect(db.Message.findByPk.calledOnce).to.equal(true);
       expect(db.Message.findByPk.calledWith(messageId)).to.equal(true);
-    });
-  });
-
-  describe('getAllMessagesFrom', () => {
-    it('should return all messages sent by phone number', async () => {
-      const phoneNumber = 1;
-      const messages = await getAllMessagesFrom(phoneNumber);
-      expect(messages).to.have.lengthOf(3);
-      expect(db.Message.findAll.calledOnce).to.equal(true);
-      expect(db.Message.findAll.calledWith({ where: { from: phoneNumber } })).to.equal(true);
-    });
-  });
-
-  describe('getAllMessagesTo', () => {
-    it('should return all messages sent phone number', async () => {
-      const phoneNumber = 1;
-      const messages = await getAllMessagesTo(phoneNumber);
-      expect(messages).to.have.lengthOf(3);
-      expect(db.Message.findAll.calledWith({ where: { to: phoneNumber } })).to.equal(true);
     });
   });
 

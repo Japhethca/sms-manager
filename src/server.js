@@ -3,14 +3,16 @@ import logger from 'morgan';
 
 import router from './routes';
 
-const app = express();
+const server = express();
 
-app.use(express.json());
-app.use(logger('tiny'));
+server.use(express.json());
+server.use(logger('tiny'));
 
-app.use('/api/v1', router);
+server.use('/api/v1', router);
 
 const port = process.env.PORT || 3300;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log('server is running on port 3300');
 });
+
+export default server;

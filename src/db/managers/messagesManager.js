@@ -2,16 +2,6 @@ import db from '../models';
 
 const { Message } = db;
 
-export async function getAllMessagesFrom(phoneNumber) {
-  const messages = await Message.findAll({ where: { from: phoneNumber } });
-  return messages;
-}
-
-export async function getAllMessagesTo(PhoneNumber) {
-  const messages = await Message.findAll({ where: { to: PhoneNumber } });
-  return messages;
-}
-
 export async function getMessagesByPhoneNumber(ownerNumber) {
   const messages = await Message.findAll({ where: { ownerNumber } });
   return messages;

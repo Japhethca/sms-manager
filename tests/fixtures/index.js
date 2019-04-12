@@ -1,7 +1,3 @@
-import sinon from 'sinon';
-
-import db from '../../src/db/models';
-
 export const contacts = [
   {
     name: 'John',
@@ -17,7 +13,7 @@ export const contacts = [
   },
 ];
 
-const messages = [
+export const messages = [
   {
     id: 1,
     from: '11000',
@@ -49,19 +45,3 @@ const messages = [
     createdAt: '2019-04-08T03:13:07.022Z',
   },
 ];
-
-db.Contact = {
-  create: sinon.fake.resolves(contacts[0]),
-  findOne: sinon.fake.resolves(contacts[1]),
-  findAll: sinon.fake.resolves(contacts),
-  destroy: sinon.fake(),
-};
-
-db.Message = {
-  findAll: sinon.fake.resolves(messages),
-  create: sinon.fake.resolves(messages[0]),
-  findByPk: sinon.fake.resolves(messages[1]),
-  destroy: sinon.fake(),
-};
-
-export default db;

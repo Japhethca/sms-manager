@@ -4,10 +4,10 @@
   "description": "SMS management application api",
   "main": "src/server.js",
   "scripts": {
-    "pretest": "NODE_ENV=test",
-    "test": "mocha tests/**/*.test.js --require @babel/register",
-    "test:watch": "yarn test -w",
-    "test:coverage": "NODE_ENV=test nyc --reporters=text,lvoc $npm_package_scripts_test",
+    "mocha": "mocha tests --recursive --require @babel/register --exit",
+    "test": "NODE_ENV=test yarn db:migrate && NODE_ENV=test yarn db:seed && NODE_ENV=test yarn mocha",
+    "test:watch": "NODE_ENV=test  yarn test -w",
+    "test:coverage": "NODE_ENV=test nyc $npm_package_scripts_mocha",
     "prestart": "yarn build",
     "start": "node build/server.js",
     "dev": "yarn lint & nodemon -x babel-node src/server.js -w src",
@@ -16,7 +16,18 @@
     "lint": "eslint src tests",
     "db:migrate": "yarn db:migrate:undo && sequelize db:migrate",
     "db:migrate:undo": "sequelize db:migrate:undo:all",
-    "db:seed": "db:seed:all"
+    "db:seed": "sequelize db:seed:undo:all && sequelize db:seed:all"
+  },
+  "nyc": {
+    "exclude": [
+      "src/db/migrations",
+      "src/db/seeders",
+      "tests/*"
+    ],
+    "all": true,
+    "reporter": [
+      "text"
+    ]
   },
   "repository": {
     "type": "git",
@@ -46,7 +57,8 @@
     "nodemon": "^1.18.10",
     "nyc": "^13.3.0",
     "sequelize-cli": "^5.4.0",
-    "sinon": "^7.3.1"
+    "sinon": "^7.3.1",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",

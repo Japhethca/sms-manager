@@ -58,17 +58,6 @@ router.get(
   getContactMessages,
 );
 
-router.get(
-  '/contacts/:phoneNumber/messages/:messageId',
-  validate({
-    params: {
-      phoneNumber: joi.number().required(),
-      messageId: joi.string().required(),
-    },
-  }),
-  getContactMessages,
-);
-
 router.get('/contacts', getContacts);
 // end contact routes
 
