@@ -1,0 +1,14 @@
+language: node_js
+node_js: v10.8.0
+services:
+  - postgresql
+
+before_script:
+  - psql -c "CREATE DATABASE test_sms_manager_db;"
+
+install:
+  - yarn install
+
+script:
+  - "yarn test:coverage"
+  - "yarn coveralls"
