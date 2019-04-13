@@ -5,9 +5,10 @@
   "main": "src/server.js",
   "scripts": {
     "mocha": "mocha tests --recursive --require @babel/register --exit",
-    "test": "NODE_ENV=test yarn db:migrate && NODE_ENV=test yarn db:seed && NODE_ENV=test yarn mocha",
-    "test:watch": "NODE_ENV=test  yarn test -w",
-    "test:coverage": "NODE_ENV=test nyc $npm_package_scripts_mocha",
+    "pretest": "export NODE_ENV=test && yarn db:migrate && yarn db:seed",
+    "test": "export NODE_ENV=test && yarn mocha",
+    "test:watch": "yarn test -w",
+    "test:coverage": "export NODE_ENV=test && yarn pretest && nyc $npm_package_scripts_mocha",
     "prestart": "yarn build",
     "start": "node build/server.js",
     "dev": "yarn lint & nodemon -x babel-node src/server.js -w src",

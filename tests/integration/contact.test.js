@@ -17,6 +17,14 @@ describe('POST /contacts', () => {
   });
 });
 
+describe('GET /contacts', () => {
+  it('should create new contact', async () => {
+    const res = await request.get(contactsUrl);
+    expect(res.body.status).to.be.equal('success');
+    expect(res.body.data).to.length.greaterThan(1);
+  });
+});
+
 describe('GET /contacts/:phoneNumber', () => {
   it('should return a contact with phone number', async () => {
     const phoneNumber = '00155555513';

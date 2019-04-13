@@ -20,7 +20,7 @@ describe('POST /messages', () => {
 
 describe('GET /messages/:messageId', () => {
   it('should return a single message with message Id', async () => {
-    const messageId = 1;
+    const messageId = 2;
     const res = await request.get(`${messagesUrl}/${messageId}`);
     expect(res.status).to.equal(200);
     expect(res.body.data.id).to.be.equal(messageId);
