@@ -12,3 +12,12 @@ install:
 script:
   - "yarn test:coverage"
   - "yarn coveralls"
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "BEbe5wGITJxXCkQsQ4vuOTfFnrOBzo7nz1mygDr5bp73dQOGvqfWO8BlhiwMhgygeeGrDMMTOcPy+db5bATA9L4yA2frMjQFLopNYH5O9lfS0AVBNLX5vVqw4N9Xl+d87xksmAq1VC8XRY9EaI3rgDCcsYwh+XYJoOpRL4lUPPy2eRNz8B3cQ8s0fV9a5NQlYSf8sFsIGwBIsTZavUMNdlaHlJmPfG/U4SQVnxPL3jjYSGeiwjtsRPahbYpq+3U98Nw0xln7WQgm55+yY/1qzZc+xJCgOeNcLHnfZT5NyHbichRPyDJXKrL9QQUeiF5FJiTNx6asYY1MYXWWw5CeRE5srj/Wwpkg5RrpqaOAuxtrT/qv5v/Te20YC9GX/eJxLaGjBN+g6zops7QyNfDp7dM2qSNL09F5CQKPvljd3Bh9E2m/SugzW+djCvD5k+MshTuC9tufvmOHTJ+QqCa98+2nlsBLuKj2sM7ukaXmCJbqaqYsyvmlm+S1L2vwmAz7SMCPaKQQvGb1JQDSa7Hj192k7+4wyfPosF6IR9plu6VJ2YDhmgHSeRfKHff0NL7f6s82jTYAmTnJMw/jSu8HoghOfMyG5X53J1Js+ZmlXLboU6rvkxNkK+/aB4LU9kKiF+sxaPxbnKN2Mzhq+Z4LSZZGpeYeuDHXoqRwXu5VYIU="
+  app: sms-manager-api-cj
+  on:
+    repo: Japhethca/sms-manager
+    all_branches: true
