@@ -22,6 +22,7 @@
   },
   "nyc": {
     "exclude": [
+      "coverage/*",
       "src/db/migrations",
       "src/db/seeders",
       "tests/*"
