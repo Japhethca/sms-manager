@@ -17,6 +17,12 @@ import validate from './validator';
 
 const router = Router();
 
+router
+  .get('/', (req, res) => res.status(200).json({
+    message: 'Welcome to SMS Manager API',
+  }))
+  .all('/', notImplemented);
+
 // contact routes
 router
   .post(

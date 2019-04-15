@@ -42,5 +42,5 @@ export async function checkMessage(messageId, res) {
 }
 
 export function notImplemented(req, res) {
-  return errorResponse(res, 405, `${req.method.toUpperCase()} method is not implemented on this endpoint`);
+  return errorResponse(res, 405, `${req.method.toUpperCase()} method is not supported on this endpoint`);
 }
