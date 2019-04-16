@@ -5,10 +5,10 @@ This is an SMS management API.
 
 ### Setup
 - clone repository: https://github.com/Japhethca/sms-manager.git
-- change directory to clone reposition `cd sms-manager`
-- run `yarn install` to installed dependencies
+- change directory to cloned repository `cd sms-manager`
+- run `yarn install` to install dependencies
 - setup `.env` using template in `.env_sample` file
-- run database migrations with `yarn db:migrate`
+- run database migration with `yarn db:migrate`
 - run `yarn dev` to start developement server or `yarn start` to start production server
 - test api endpoints on `http://localhost:3300/api/v1/`
 
