@@ -20,4 +20,4 @@ To start test,
 
 
 ### API Documentation
-[Go to Documentation]()
+[Go to Documentation](https://documenter.getpostman.com/view/2668539/S1EQUeMs)
