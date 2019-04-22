@@ -13,7 +13,7 @@ This is an SMS management API.
 - test api endpoints on `http://localhost:3300/api/v1/`
 
 ### Test
-Ensure you have setup your local `.env` file before continuing with test.
+Ensure you have setup your local `.env` file before running tests.
 To start test,
 - run `yarn test` or `yarn test:watch` to run test in watch mode.
 - run `yarn test:coverage` to display test coverage
