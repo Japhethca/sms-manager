@@ -9,7 +9,6 @@
     "test": "export NODE_ENV=test && yarn mocha",
     "test:watch": "yarn test -w",
     "test:coverage": "export NODE_ENV=test && yarn pretest && nyc $npm_package_scripts_mocha",
-    "prestart": "yarn build",
     "start": "node build/server.js",
     "dev": "yarn lint & nodemon -x babel-node src/server.js -w src",
     "prebuild": "rm -rf build",
